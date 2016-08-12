@@ -1,0 +1,538 @@
+/* This is a simple guide with explanations taken from the NecroBot Wiki page. 
+For those of you who are visual learners..
+Config was created at the time of NecroBot 0.8.5
+~Main NecroBot Wiki~ https://github.com/NECROBOTIO/NecroBot/wiki
+~NecroBot Discord~   https://discord.gg/VNJjyxE
+~PogoLocationFeeder~ https://github.com/5andr0/PogoLocationFeeder/releases/tag/v0.1.6
+If you are still having an issue after you have read the wiki, head over to the Necro discord channel #support.
+This Config.json was Created by NecroBot
+Edited by : Hanibal Chew
+*/ 
+
+{
+  "TranslationLanguageCode": "en",	/* Translation code for Necrobot. Supported values can be found in the config/translations folder. */
+  "AutoUpdate": true, 			/* NecroBot will detect if it needs to update if set to True */
+  "TransferConfigAndAuthOnUpdate": true /* upon updating it will attempt to transfer your config & auth to the new version. */  
+  "UseWebsocket": false,                /* Do Not Modify this */
+  "WebSocketPort": 14251,               /* Port used by NecroBot for potential GUI implementations. Should not be modified. */
+  "StartupWelcomeDelay": false,         /* if this is set to 'True', it will ask for you to verify the coordinates before proceeding. Setting it to 'false' will skip this prompt.*/
+  "UseTelegramAPI": false,              /* If you want to setup Telegram follow this guide, https://github.com/NECROBOTIO/NecroBot/wiki/Telegram */
+  "TelegramAPIKey": null,               /* Same as above.*/
+  "AmountOfPokemonToDisplayOnStart": 10 /* how many Pokemon in your Inventory will be displayed at startup */
+  "DetailedCountsBeforeRecycling": true /* Will Display List of Inventory before Recycling */
+  "MaxBerriesToUsePerPokemon": 3,       /* The Max amount of razzberries to use per Pokemon catch attempt */
+  "CatchPokemon": true,                 /* True will catch Pokemon as normal while walking around, False will Only goto PokeStops and Snipe if you have Sniping turned on. */
+  "AutomaticallyLevelUpPokemon": false, /* When AutomaticallyLevelUpPokemon is set to True, a randomly selected Pokemon will be leveled up one step based on the SCHEDULED INTERVAL.*/
+  "OnlyUpgradeFavorites": true,		/* True will only Auto LvL up your Pokemon that have been marked Favorite. Only If AutomaticallyLevelUpPokemon is set to true. */ 
+  "UseLevelUpList": true,	        /* If set to True choose what Pokemon you want to Level up automatically by adding them to this list below ""PokemonsToLevelUp"".*/	
+  "AmountOfTimesToUpgradeLoop": 5,      /* How many times do you want to Power up each Pokemon that meets the requirements below. */                  
+  "GetMinStarDustForLevelUp": 5000,     /* The amount of Stardust you must have to start "AutomaticallyLevelUpPokemon". */
+  "LevelUpByCPorIv": "iv",              /* Priority for CP or IV when choosing what Pokemon to Level up. */
+  "UpgradePokemonCpMinimum": 1000.0,    /* Minimum Cp for AutomaticallyLevelUpPokemon. */
+  "UpgradePokemonIvMinimum": 95.0,      /* Minimum IV for AutomaticallyLevelUpPokemon. */
+  "UpgradePokemonMinimumStatsOperator": "and", /* "And" requires a Pokemon to meet CP and IV, "Or" the Pokemon could meet either IV or CP. */
+  "DisableHumanWalking": false,                /* False will simulate Human walking and follow paths, True will disable human walking and teleport you around. */
+  "DefaultLatitude": 40.785091,                /* Starting Latitude Location */
+  "DefaultLongitude": -73.968285,              /* Starting Longitude Location, Pick a good spot on google maps with a lot of Pokestops. */
+  "WalkingSpeedInKilometerPerHour": 15.0,      /* Walking Speed, Turning this UP will get you better exp/h but also a greater chance of soft-ban/perm ban. */
+  "MaxSpawnLocationOffset": 10,                /* When NecroBot boots, the default location will be offset based on this multiplier. Most users will not need to modify this.. */	
+  "FastSoftBanBypass": false,                  /* if set to true bot doesn't have any delays when bypassing the soft-ban Default is set to False.*/
+  "DelayBetweenPlayerActions": 5000,	       /* Delay in milliseconds between transfers/recycles/evolutions/etc.*/
+  "DelayBetweenPokemonCatch": 2000,	       /* Delay in milliseconds between attempts to catch a Pokemon. Turning this Down will get you better exp/h but also a greater chance of soft-ban/perm ban. */	
+  "DumpPokemonStats": false,                   /* When set to 'true', NecroBot will output a .csv file of the list of player Information including Pokemon Stats, Cp,LvL,IV amount of Candy, Move-set and more, located in a Dumps directory.*/
+  "EvolveAboveIvValue": 95.0,                  /* Only when EvolveAllPokemonAboveIV is set to true Value used to determine what IV Pokemon should be automatically evolved at.*/	
+  "EvolveAllPokemonAboveIv": false,            /* When EvolveAllPokemonAboveIV is set to true, any Pokemon that is above the EvolveAboveIVValue value will be evolved if there are enough candies.*/
+  "EvolveAllPokemonWithEnoughCandy": true,     /* When set to true, any Pokemon listed in the PokemonsToEvolve list will be evolved every 5 Pokestops limited by the number of Pokemon and candies you have.*/
+  "EvolveKeptPokemonsAtStorageUsagePercentage": 20.0,  /* The setting 'EvolveKeptPokemonsAtStorageUsagePercentage' determines how much of the pokemon storage should be full before evolution starts.*/
+  "KeepPokemonsThatCanEvolve": false,          /* Set to True for Mass Evolving, it will check "UseLuckyEggsMinPokemonAmount" and start Evolving once at that amount, if False it will Evolve as soon as you have enough Candies and the Pokemon is in the "PokemontoEvolve" List*/
+  "KeepMinCp": 1250,                           /* Min CP value per Pokemon to keep, NOTE: Only used if TransferDuplicatePokemon is set to true. This is a global setting that applies to any Pokemon that has not been overridden by an entry in the PokemonsTransferFilter list.*/
+  "KeepMinIvPercentage": 90.0,                 /* Min IV value per Pokemon to Keep, NOTE: Only used if TransferDuplicatePokemon is set to true. This is a global setting that applies to any Pokemon that has not been overridden by an entry in the PokemonsTransferFilter list.*/
+  "KeepMinLvl": 6,                             /* It allows the user to keep pokemon leveled more than the KeepMinLvl value, and choose if he wants to use this feature by setting UseKeepMinLvl to false/true*/
+  "KeepMinOperator": "or",                     /* "OR" =,If a pokemon meets either CP,IV, or MinLVL it will keep it, "AND" = the Pokemon must meet ALL values set IV,CP,MinLVL.*/
+  "UseKeepMinLvl": false,                      /* Do you want to use the KeepMinLVL for deciding to keep Pokemon*/
+  "PrioritizeIvOverCp": false,                 /* When PrioritizeIVOverCP is set to true, the bot will prioritize by IV instead of CP when deciding which Pokemon to transfer out of a group of duplicate Pokemon. By default, the bot sorts by CP.*/
+  "KeepMinDuplicatePokemon": 1,                /* This value specifies how many duplicates of each Pokemon to keep when deciding what Pokemon to transfer.*/
+  "UseGpxPathing": false,                      /* When UseGPXPathing is set to true, the bot will walk to the first point in the GPX path defined by the value in GPXFile and traverse each point. By default the bot wanders around the radius defined in MaxTravelDistanceInMeters "".*/
+  "GpxFile": "GPXPath.GPX",                    /* GPX file must be in the same folder as the necrobot.exe */
+  "VerboseRecycling": true,                    /* True will Display the items it is Recycling, False you will see Recycling quietly....*/ 
+  "RecycleInventoryAtUsagePercentage": 10.0,   /* Percentage of full Inventory before it will recycle specified items*/
+  "RandomizeRecycle": false,                   /* if set to true it will enable recycling of items at a more random time and number.*/
+  "RandomRecycleValue": 5,                     /* How random do you want to make recycling. Currently, this can recycle more items than desired, so don't set it too big.*/
+  "DelayBetweenRecycleActions": false,         /* For more Human like actions if set to true, when recycling items occurs a delay between actions will be added */
+  "UseEggIncubators": true,                    /* Automatically incubates eggs in order that they are listed in the inventory when the bot first runs.*/
+  "UseLuckyEggConstantly": false,              /* If set to true it will use a Lucky Egg anytime available */   
+  "UseLuckyEggsMinPokemonAmount": 30,          /* Value used when evolving to determine the number of evolutions needed to trigger a Lucky Egg use.*/
+  "UseLuckyEggsWhileEvolving": false,          /* When UseLuckyEggsWhileEvolving is set to true, NecroBot will hold-off on evolving Pokemon until there are enough evolutions to meet the value in useLuckyEggsMinPokemonAmount and then proceed to use a Lucky Egg before evolving them.*/
+  "UseIncenseConstantly": false,               /* if set true it will use an Incense anytime available */
+  "UseBerriesMinCp": 1000,                     /* if "MaxBerriesToUsePerPokemon" is set above 0 then this value will determine to use a razzberry on a min CP */
+  "UseBerriesMinIv": 90.0,                     /* if "MaxBerriesToUsePerPokemon" is set above 0 then this value will determine to use a razzberry on a min IV */
+  "UseBerriesBelowCatchProbability": 0.2,      /* if "MaxBerriesToUsePerPokemon" is set above 0 then this value will determine to use a razzberry on BelowCatchProbability */
+  "UseBerriesOperator": "or",                  /* "OR" =,If a pokemon meets either MinCP,MinIV, or BelowCatchProbability it will use a Razzberry, "AND" = the Pokemon must meet ALL values set MinIV,MinCP,BelowCatchProbability to use a razzberry.*/
+  "UseSnipeLocationServer": false,             /* Toggle to use a locally hosted location feeder service like "PogoLocationFeeder" that NecroBot can use to dynamically populate potential sniping locations.See the wiki Sniping Guide for more info.*/
+  "SnipeLocationServer": "localhost",          /* Do Not Modify*/
+  "SnipeLocationServerPort": 16969,            /* Do Not Modify*/
+  "GetSniperInfoFromPokezz": false,            /* Use the Pokezz server for sniping, Default set to false since server has been down, set back to True once servers are stable */
+  "GetOnlyVerifiedSniperInfoFromPokezz": true, /* Do not Modify unless above is set to False and you are not sniping with Pokezz*/
+  "GetSniperInfoFromPokeSnipers": true,        /* Use the Pokesnipers server for sniping Default set to true */
+  "GetSniperInfoFromPokeWatchers": false,      /* Use the PokeWatchers server for sniping, Default set to false since server has been down, set back to True once servers are stable */
+  "SnipeWithSkiplagged": false,                /* Use the Skiplagged server for Sniping, Default set to false since server has been down, set back to True once servers are stable */
+  "MinPokeballsToSnipe": 20,  		       /* When attempting to catch a verified Snipe, How many total Pokeballs you must have in your Inventory.*/                             
+  "MinPokeballsWhileSnipe": 0,                 /* When attempting to catch a verified Snipe, the minimum amount of Pokeballs you have in your Inventory*/
+  "MinDelayBetweenSnipes": 60000,              /* How long in Milliseconds to wait between looking to snipe a Pokemon. ""*/
+  "SnipingScanOffset": 0.005,                  /* When going to Snipe a Pokemon the location area radius that your character will look for the Pokemon snipe 0.003 = half a mile; maximum 0.06 is 10 miles*/
+  "SnipeAtPokestops": false,                   /* If true your character will look for Pokemon to Snipe after looting a Pokestop, MinDelayBetweenSnipes will determine how many Pokestops to Loot before sniping */
+  "SnipeIgnoreUnknownIv": false,               /* at the moment True does not function correctly. "Keep False" so even if the IV is unkown it will still attempt to Snipe. */
+  "UseTransferIvForSnipe": false,              /* When UseTransferIvForSnipe is set to true, Necrobot will use the the global KeepMinIvPercentage value and PokemonTransferFilter list to determine if it should attempt to snipe a Pokemon.*/
+  "SnipePokemonNotInPokedex": false,           /* known issue, Setting to true will Ignore Regional Pokemon that are not in your PokeDex*/
+  "RenamePokemon": false,                      /* When RenamePokemon is set to true, Pokemon are renamed based on the template defined in RenameTemplate.*/
+  "RenameOnlyAboveIv": true,                   /* When RenamePokemon and RenameAboveIv are set to true, any Pokemon above the value in KeepMinIvPercentage is renamed.*/
+  "RenameTemplate": "{1}_{0}",                 /* Format used by NecroBot to rename Pokemon. No need to modify.*/
+  "MaxPokeballsPerPokemon": 10,                /* Specifies the number of pokeballs to use per pokemon before giving up the encounter.*/
+  "MaxTravelDistanceInMeters": 5000,           /* In meters, how far the bot will travel in a radius from the original default location.*/
+  "TotalAmountOfPokeballsToKeep": 120,         /* Total amount of pokeball-type items to keep. Necrobot will try to intelligently prioritize higher pokeballs when farming Pokestops.*/
+  "TotalAmountOfPotionsToKeep": 80,            /* Total amount of potion-type items to keep. Necrobot will try to intelligently prioritize higher potions when farming Pokestops.*/
+  "TotalAmountOfRevivesToKeep": 60,            /* Total amount of revive-type items to keep. Necrobot will try to intelligently prioritize higher revives when farming Pokestops.*/
+  "TotalAmountOfBerriesToKeep": 50,            /* Total amount of Razzberries to keep*/
+  "UseGreatBallAboveCp": 1000,                 /* If a Pokemon is above this CP, use a Great ball.*/
+  "UseUltraBallAboveCp": 1250,                 /* If a Pokemon is above this CP, use an Ultra ball.*/
+  "UseMasterBallAboveCp": 1500,                /* If a Pokemon is above this CP, use a Master ball.*/
+  "UseGreatBallAboveIv": 85.0,                 /* If a Pokemon is above this IV, use a Great ball.*/
+  "UseUltraBallAboveIv": 95.0,                 /* If a Pokemon is above this IV, use a Ultra ball.*/
+  "UseGreatBallBelowCatchProbability": 0.2,    /* If a Pokemon is below this catch probabilty, use a Great ball.*/
+  "UseUltraBallBelowCatchProbability": 0.1,    /* If a Pokemon is below this catch probabilty,use a Ultra ball.*/
+  "UseMasterBallBelowCatchProbability": 0.05,  /* If a Pokemon is below this catch probabilty, use a Master ball.*/
+  "EnableHumanizedThrows": true,               /* Setting to true will mimic Human-like pokeball throws*/
+  "NiceThrowChance": 40,                       /* If EnableHumanizedThrows is set to true, the chance the bot will throw a Nice throw*/
+  "GreatThrowChance": 30,                      /* If EnableHumanizedThrows is set to true, the chance the bot will throw a Great throw*/
+  "ExcellentThrowChance": 10,                  /* If EnableHumanizedThrows is set to true, the chance the bot will throw a Excellent throw*/
+  "CurveThrowChance": 90,                      /* Percent necrobot will throw a curve Pokeball*/
+  "ForceGreatThrowOverIv": 90.0,               /* If "EnableHumanizedThrows" is set to true any Pokemon above this IV value will throw a Great.*/
+  "ForceExcellentThrowOverIv": 95.0,           /* If "EnableHumanizedThrows" is set to true any Pokemon above this IV value will throw a Excellent.*/
+  "ForceGreatThrowOverCp": 1000,               /* If "EnableHumanizedThrows" is set to true any Pokemon above this CP value will throw a Great.*/
+  "ForceExcellentThrowOverCp": 1500,           /* If "EnableHumanizedThrows" is set to true any Pokemon above this CP value will throw a Excellent.*/
+  "TransferWeakPokemon": false,                /* Transfers all pokemon below KeepMinCP/IV value*/
+  "TransferDuplicatePokemon": true,            /* Several Factors determine if duplicate Pokemon will be transfered When TransferDuplicatePokemon is set to true, any Pokemon that meets the below criteria is transferred: Total number of that Pokemon species in your inventory is greater than KeepMinDuplicatePokemon, Below the KeepMinIVPercentage value Below the KeepMinCP value, Is not listed in your PokemonsNotToTransfer list. Note that any of the first three criteria are global values and they CAN be overwritten by the Pokemon-specific settings in the PokemonsTransferFilter list.*/
+  "TransferDuplicatePokemonOnCapture": true,   /* If set to true and the Pokemon meets all duplicate requirements MinIV,MinCp etc it will be Transferred right after it is caught. */
+  "FavoriteMinIvPercentage": 95.0,             /* if AutoFavoritePokemon is set to true any Pokemon above IV value will be marked Favorite and cannot be transferred.*/
+  "AutoFavoritePokemon": false,                /* Automatically mark Pokemon Favorite defined above by IV value */
+  "UsePokemonToNotCatchFilter": false,         /* When UsePokemonToNotCatchFilter is set to true, any Pokemon listed in the PokemonsToIgnore list will be skipped when determining what Pokemon to catch.*/
+  "UsePokemonSniperFilterOnly": false,         /* Specific list of Pokemon to Only Snipe */
+  "ItemRecycleFilter": [                       /* List of max values mapped to each non-Pokeball, non-potion, and non-revive Pokemon Go item. During the recycling stage, any item that is over the max count is recycled to meet the value. This is to prevent full inventories. */
+    {                                                      
+      "Key": "itemUnknown",                                
+      "Value": 0
+    },
+    {
+      "Key": "itemLuckyEgg",
+      "Value": 200
+    },
+    {
+      "Key": "itemIncenseOrdinary",
+      "Value": 100
+    },
+    {
+      "Key": "itemIncenseSpicy",
+      "Value": 100
+    },
+    {
+      "Key": "itemIncenseCool",
+      "Value": 100
+    },
+    {
+      "Key": "itemIncenseFloral",
+      "Value": 100
+    },
+    {
+      "Key": "itemTroyDisk",
+      "Value": 100
+    },
+    {
+      "Key": "itemXAttack",
+      "Value": 100
+    },
+    {
+      "Key": "itemXDefense",
+      "Value": 100
+    },
+    {
+      "Key": "itemXMiracle",
+      "Value": 100
+    },
+    {
+      "Key": "itemSpecialCamera",
+      "Value": 100
+    },
+    {
+      "Key": "itemIncubatorBasicUnlimited",
+      "Value": 100
+    },
+    {
+      "Key": "itemIncubatorBasic",
+      "Value": 100
+    },
+    {
+      "Key": "itemPokemonStorageUpgrade",
+      "Value": 100
+    },
+    {
+      "Key": "itemItemStorageUpgrade",
+      "Value": 100
+    }
+  ],
+  "PokemonsNotToTransfer": [ /*Only used if "TransferDuplicatePokemon" is set to true Comma-seperated quote-wrapped list of Pokemon names that distinguish what Pokemon to keep regardless of their IV or CP so that they are not transferred. Pokemon in this list should never be transferred by NecroBot. */				
+    "venusaur",
+    "charizard",
+    "blastoise",
+    "clefable",
+    "muk",
+    "chansey",
+    "gyarados",
+    "ditto",
+    "snorlax",
+    "articuno",
+    "zapdos",
+    "moltres",
+    "dragonite",
+    "mewtwo",
+    "mew"
+  ],
+  "PokemonsToEvolve": [	    /*Only used if "EvolveAllPokemonWithEnoughCandy" is set to true. Comma-seperated quote-wrapped list of Pokemon names that distinguish which Pokemon to automatically evolve if there are enough candies.*/
+    "caterpie",                                          
+    "weedle",                                            
+    "pidgey",                                            
+    "rattata"                                            
+  ],                                                     
+  "PokemonsToLevelUp": [    /*Only used if "UseLevelUpList" is set to true. Comma-seperated quote-wrapped list of Pokemon names that distinguish which Pokemon to automatically power up. */                            
+    "caterpie",                                          
+    "weedle",                                            
+    "pidgey",                                            
+    "rattata",                                           
+    "spearow",                                           
+    "zubat",                                             
+    "doduo"                                              
+  ],                                                     
+  "PokemonsToIgnore": [	    /*Only used if "UsePokemonToNotCatchFilter" is set to true. Comma-seperated quote-wrapped list of Pokemon names that distinguish what Pokemon to ignore when searching to catch.*/
+    "caterpie",
+    "weedle",
+    "pidgey",
+    "rattata",
+    "spearow",
+    "zubat",
+    "doduo"
+  ],
+  "PokemonsTransferFilter": { /*Only used if "TransferDuplicatePokemon" is set to true This list of Pokemon names lets you set the KeepMinDuplicatePokemon, KeepMinIVPercentage, and KeepMinCP values specific to each Pokemon. This lets you override the default global values for those.*/
+    "Golduck": {
+      "KeepMinCp": 1800,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 95.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Farfetchd": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 80.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Krabby": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 95.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Kangaskhan": {
+      "KeepMinCp": 1500,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 60.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Horsea": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 95.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Staryu": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 95.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "MrMime": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 40.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Scyther": {
+      "KeepMinCp": 1800,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 80.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Jynx": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 95.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Electabuzz": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 80.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Magmar": {
+      "KeepMinCp": 1500,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 80.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Pinsir": {
+      "KeepMinCp": 1800,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 95.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Tauros": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 90.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Magikarp": {
+      "KeepMinCp": 200,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 95.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Gyarados": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 90.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Lapras": {
+      "KeepMinCp": 1800,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 80.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Eevee": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 95.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Vaporeon": {
+      "KeepMinCp": 1500,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 90.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Jolteon": {
+      "KeepMinCp": 1500,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 90.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Flareon": {
+      "KeepMinCp": 1500,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 90.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Porygon": {
+      "KeepMinCp": 1250,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 60.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Snorlax": {
+      "KeepMinCp": 2600,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 90.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    },
+    "Dragonite": {
+      "KeepMinCp": 2600,
+      "KeepMinLvl": 6,
+      "UseKeepMinLvl": false,
+      "KeepMinIvPercentage": 90.0,
+      "KeepMinDuplicatePokemon": 1,
+      "Moves": [],
+      "KeepMinOperator": "or",
+      "MovesOperator": "or"
+    }
+  },
+  "PokemonToSnipe": {
+    "Locations": [
+      {
+        "Latitude": 38.556807486461118,
+        "Longitude": -121.2383794784546
+      },
+      {
+        "Latitude": -33.859019,
+        "Longitude": 151.213098
+      },
+      {
+        "Latitude": 47.5014969,
+        "Longitude": -122.0959568
+      },
+      {
+        "Latitude": 51.5025343,
+        "Longitude": -0.2055027
+      }
+    ],
+    "Pokemon": [
+      "venusaur",
+      "charizard",
+      "blastoise",
+      "beedrill",
+      "raichu",
+      "sandslash",
+      "nidoking",
+      "nidoqueen",
+      "clefable",
+      "ninetales",
+      "golbat",
+      "vileplume",
+      "golduck",
+      "primeape",
+      "arcanine",
+      "poliwrath",
+      "alakazam",
+      "machamp",
+      "golem",
+      "rapidash",
+      "slowbro",
+      "farfetchd",
+      "muk",
+      "cloyster",
+      "gengar",
+      "exeggutor",
+      "marowak",
+      "hitmonchan",
+      "lickitung",
+      "rhydon",
+      "chansey",
+      "kangaskhan",
+      "starmie",
+      "mrMime",
+      "scyther",
+      "magmar",
+      "electabuzz",
+      "jynx",
+      "gyarados",
+      "lapras",
+      "ditto",
+      "vaporeon",
+      "jolteon",
+      "flareon",
+      "porygon",
+      "kabutops",
+      "aerodactyl",
+      "snorlax",
+      "articuno",
+      "zapdos",
+      "moltres",
+      "dragonite",
+      "mewtwo",
+      "mew"
+    ]
+  },
+  "PokemonToUseMasterball": [
+    "articuno",
+    "zapdos",
+    "moltres",
+    "mew",
+    "mewtwo"
+  ]
+}
